@@ -6,38 +6,13 @@
 /*   By: lscheirm <lscheirm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 00:56:58 by lscheirm          #+#    #+#             */
-/*   Updated: 2026/03/17 11:54:07 by lscheirm         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:25:52 by lscheirm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	write_base_convert(char *tab_result, int j)
-{
-	while (j >= 0)
-	{
-		write(1, &tab_result[j], 1);
-		j--;
-	}
-}
-
-void	write_result(int i, long nbr_long, char *base)
-{
-	char	tab_result[64];
-	int		j;
-
-	j = 0;
-	while (nbr_long != 0)
-	{
-		tab_result[j] = base[nbr_long % i];
-		nbr_long = nbr_long / i;
-		j++;
-	}
-	tab_result[j] = '\0';
-	write_base_convert(tab_result, j - 1);
-}
-
-int	base_true(char *base)
+static int	base_true(char *base)
 {
 	int	i;
 	int	j;
@@ -60,26 +35,46 @@ int	base_true(char *base)
 	return (i);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+static void	write_base_convert(char *tab_result, int j, int *y)
 {
-	long	nbr_long;
-	int		i;
+	while (j >= 0)
+	{
+		write(1, &tab_result[j], 1);
+		*y += 1;
+		j--;
+	}
+}
+
+static void	write_result(int i, unsigned long nbr, char *base, int *y)
+{
+	char	tab_result[64];
+	int		j;
+
+	j = 0;
+	while (nbr != 0)
+	{
+		tab_result[j] = base[nbr % i];
+		nbr = nbr / i;
+		j++;
+	}
+	tab_result[j] = '\0';
+	write_base_convert(tab_result, j - 1, y);
+}
+
+void	ft_putnbr_base(unsigned long nbr, char *base, int *y)
+{
+	int	i;
 
 	if ((base[0] == '\0') || (base[1] == '\0'))
 		return ;
-	nbr_long = nbr;
 	i = base_true(base);
 	if (i == 0)
 		return ;
-	if (nbr_long == 0)
+	if (nbr == 0)
 	{
 		write(1, &base[0], 1);
+		*y += 1;
 		return ;
 	}
-	if (nbr_long < 0)
-	{
-		write(1, "-", 1);
-		nbr_long = -nbr_long;
-	}
-	write_result(i, nbr_long, base);
+	write_result(i, nbr, base, y);
 }

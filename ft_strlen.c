@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lscheirm <lscheirm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/17 16:26:10 by lscheirm          #+#    #+#             */
-/*   Updated: 2026/03/21 12:04:10 by lscheirm         ###   ########.fr       */
+/*   Created: 2026/03/08 06:12:06 by lscheirm          #+#    #+#             */
+/*   Updated: 2026/03/18 20:13:42 by lscheirm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <stddef.h>
-# include <unistd.h>
+int	ft_strlen(const char *s)
+{
+	int	i;
 
-void	ft_putchar_fd(char c, int fd, int *y);
-int		ft_printf(const char *, ...);
-void	ft_putnbr_fd(int nb, int fd, int *y);
-void	ft_putstr_fd(char *s, int fd, int *y);
-void	ft_putnbr_base(unsigned long nbr, char *base, int *y);
-int		ft_strlen(const char *s);
-
-#endif
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}

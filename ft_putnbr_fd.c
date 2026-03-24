@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	tab_convert(int nb, int fd)
+static void	tab_convert(int nb, int fd, int *y)
 {
 	int		index;
 	char	tab_char_int[12];
@@ -29,22 +29,30 @@ static void	tab_convert(int nb, int fd)
 	while (index >= 0)
 	{
 		write(fd, &tab_char_int[index], 1);
+		*y += 1;
 		index--;
 	}
 }
 
-void	ft_putnbr_fd(int nb, int fd)
+void	ft_putnbr_fd(int nb, int fd, int *y)
 {
 	if (nb == -2147483648)
+	{
 		write(fd, "-2147483648", 11);
+		*y += 11;
+	}
 	else if (nb == 0)
+	{
 		write(fd, "0", 1);
+		*y += 1;
+	}
 	else if (nb < 0)
 	{
 		nb = -nb;
 		write(fd, "-", 1);
-		tab_convert(nb, fd);
+		*y += 1;
+		tab_convert(nb, fd, y);
 	}
 	else
-		tab_convert(nb, fd);
+		tab_convert(nb, fd, y);
 }
