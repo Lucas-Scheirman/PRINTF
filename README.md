@@ -9,7 +9,10 @@ Implémentation partielle de la fonction `printf` en C, avec apprentissage des v
 Compiler et installer le projet :
 
 ```bash
-make
+make        # compile la bibliothèque → libft.a
+make clean  # supprime les fichiers objets (.o)
+make fclean # supprime les fichiers objets + libft.a
+make re     # recompile tout from scratch
 ```
 
 Utiliser la bibliothèque dans un projet :
