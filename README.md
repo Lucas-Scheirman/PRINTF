@@ -9,9 +9,9 @@ Implémentation partielle de la fonction `printf` en C, avec apprentissage des v
 Compiler et installer le projet :
 
 ```bash
-make        # compile la bibliothèque → libft.a
+make        # compile la bibliothèque → printf.a
 make clean  # supprime les fichiers objets (.o)
-make fclean # supprime les fichiers objets + libft.a
+make fclean # supprime les fichiers objets + printf.a
 make re     # recompile tout from scratch
 ```
 
@@ -21,6 +21,23 @@ Utiliser la bibliothèque dans un projet :
 cc votre_fichier.c -L. -lftprintf -o votre_programme
 ```
 
+
+
+## Paramètres du ft_printf à implémenter
+
+### Conversions obligatoires
+
+| Flag | Ce que ça fait |
+|---|---|
+| `%c` | Affiche un caractère |
+| `%s` | Affiche une string |
+| `%p` | Affiche un pointeur en hexa avec `0x` devant |
+| `%d` | Affiche un entier en base 10 |
+| `%i` | Affiche un entier en base 10 (pareil que `%d`) |
+| `%u` | Affiche un entier non signé en base 10 |
+| `%x` | Affiche un nombre en hexa minuscule (ex: `ff`) |
+| `%X` | Affiche un nombre en hexa majuscule (ex: `FF`) |
+| `%%` | Affiche un `%` littéral |
 
 ## Choix techniques
 
