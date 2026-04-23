@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscheirm <lscheirm@student.42.be>          +#+  +:+       +#+        */
+/*   By: lscheirm <lscheirm@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 01:07:16 by lscheirm          #+#    #+#             */
-/*   Updated: 2026/04/21 01:07:18 by lscheirm         ###   ########.fr       */
+/*   Updated: 2026/04/21 21:09:10 by lscheirm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,9 @@ void	ft_putnbr_base(unsigned long nbr, char *base, int *y)
 		return ;
 	}
 	write_result(i, nbr, base, y);
+}
+
+int main()
+{
+	ft_printf("ghhj%s","hhhhhh");
 }

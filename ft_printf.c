@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscheirm <lscheirm@student.42.be>          +#+  +:+       +#+        */
+/*   By: lscheirm <lscheirm@student.42belgium.be    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 01:06:56 by lscheirm          #+#    #+#             */
-/*   Updated: 2026/04/21 01:06:58 by lscheirm         ###   ########.fr       */
+/*   Updated: 2026/04/21 21:04:20 by lscheirm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,24 @@ static void	printf_p(void *arg, int *y)
 	ft_putnbr_base((uintptr_t)arg, "0123456789abcdef", y);
 }
 
-static void	print_good_type(char c, va_list *ap, int *y)
+static void	print_good_type(char c, va_list ap, int *y)
 {
 	if (c == 'c')
-		ft_putchar_fd(va_arg(*ap, int), 1, y);
+		ft_putchar_fd(va_arg(ap, int), 1, y);
 	else if (c == 's')
-		ft_putstr_fd(va_arg(*ap, char *), 1, y);
+		ft_putstr_fd(va_arg(ap, char *), 1, y);
 	else if (c == 'p')
-		printf_p(va_arg(*ap, void *), y);
+		printf_p(va_arg(ap, void *), y);
 	else if (c == 'd')
-		ft_putnbr_fd(va_arg(*ap, int), 1, y);
+		ft_putnbr_fd(va_arg(ap, int), 1, y);
 	else if (c == 'i')
-		ft_putnbr_fd(va_arg(*ap, int), 1, y);
+		ft_putnbr_fd(va_arg(ap, int), 1, y);
 	else if (c == 'u')
-		ft_putnbr_base(va_arg(*ap, unsigned int), "0123456789", y);
+		ft_putnbr_base(va_arg(ap, unsigned int), "0123456789", y);
 	else if (c == 'x')
-		ft_putnbr_base(va_arg(*ap, unsigned int), "0123456789abcdef", y);
+		ft_putnbr_base(va_arg(ap, unsigned int), "0123456789abcdef", y);
 	else if (c == 'X')
-		ft_putnbr_base(va_arg(*ap, unsigned int), "0123456789ABCDEF", y);
+		ft_putnbr_base(va_arg(ap, unsigned int), "0123456789ABCDEF", y);
 	else if (c == '%')
 		ft_putchar_fd('%', 1, y);
 }
@@ -63,7 +63,7 @@ int	ft_printf(const char *format, ...)
 		else
 		{
 			i++;
-			print_good_type(format[i], &ap, &y);
+			print_good_type(format[i], ap, &y);
 		}
 		i++;
 	}
